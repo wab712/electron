@@ -109,6 +109,7 @@ void NodeService::Initialize(node::mojom::NodeServiceParamsPtr params) {
         node::Stop(env, node::StopFlags::kDoNotTerminateIsolate);
         node_env_stopped_ = true;
         std::move(termination_callback_).Run(exit_code);
+        ParentPort::GetInstance()->Close();
       });
 
   node_env_->set_trace_sync_io(node_env_->options()->trace_sync_io);

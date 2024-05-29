@@ -42,6 +42,7 @@ class ParentPort : public gin::Wrappable<ParentPort>,
   ParentPort();
   ~ParentPort() override;
   void Initialize(blink::MessagePortDescriptor port);
+  void Close();
 
   // gin::Wrappable
   static gin::WrapperInfo kWrapperInfo;
@@ -51,7 +52,6 @@ class ParentPort : public gin::Wrappable<ParentPort>,
 
  private:
   void PostMessage(v8::Local<v8::Value> message_value);
-  void Close();
   void Start();
   void Pause();
 
